@@ -23,6 +23,9 @@ var Accueil = React.createClass({
             )
         }
     },
+    toogleAfficherConnexionSalon: function(){
+        this.setState({afficherConnexionSalon: !this.state.afficherConnexionSalon});
+    },
     render: function() {
         return (
             /*jshint ignore:start */
@@ -30,7 +33,7 @@ var Accueil = React.createClass({
                 <h1>Linq</h1>
                 {this.hello()}
                 <div className="row atEase">
-                    <button type="button" className="row btn btn-primary">Entrer un salon</button>
+                    <button type="button" className="row btn btn-primary" onClick={this.toogleAfficherConnexionSalon}>Entrer un salon</button>
                 </div>
                 {this.afficherConnexionSalon()}
                 <div className="row atEase">
