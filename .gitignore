@@ -1,4 +1,14 @@
-.idea/*
-node_modules
+### OSX ###
+.DS_Store
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+node_modules/
+.idea/
+.editorconfig
 bower_components
-.env
+/src/scripts
+/dist
