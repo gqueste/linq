@@ -1,12 +1,12 @@
 var React = require('react');
 
-var About = React.createClass({
+var Room = React.createClass({
     render: function() {
         return (
             /*jshint ignore:start */
             <div className="jumbotron">
                 <div>
-                    <h2>Hello About</h2>
+                    <h2>Hello Room {this.props.params.roomId}</h2>
                 </div>
             </div>
             /*jshint ignore:end */
@@ -14,4 +14,4 @@ var About = React.createClass({
     }
 });
 
-export default About;
+export default Room;

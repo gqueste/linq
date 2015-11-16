@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { Router, Route, Link } from 'react-router';
 var Accueil = require('./pages/accueil');
 var About = require('./pages/about');
+var Room = require('./pages/room');
 
 class App extends React.Component {
     render() {
@@ -22,6 +23,7 @@ render((
     <Router>
         <Route path="/index" component={Accueil}></Route>
         <Route path="/about" component={About}></Route>
+        <Route path="/room/:roomId" component={Room}/>
         <Route path="*" component={Accueil}/>
     </Router>
     /*jshint ignore:end */
