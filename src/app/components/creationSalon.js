@@ -39,6 +39,9 @@ var CreationSalon = React.createClass({
             callback(error, authData, ref);
         });
     },
+    redirectToRoom: function(){
+        window.location.replace(window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated);
+    },
     afficherLien: function(){
         if(this.state.afficherLien){
             var adresse = window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated;
@@ -52,7 +55,7 @@ var CreationSalon = React.createClass({
                                 <input type="text" className="form-control" readOnly value={adresse} />
                             </div>
                             <div className="col-xs-12 col-md-6">
-                                <button type="button" className="btn btn-block btn-primary">Entrer dans le chat</button>
+                                <button type="button" className="btn btn-block btn-primary" onClick={this.redirectToRoom}>Entrer dans le chat</button>
                             </div>
                         </div>
                     </form>
