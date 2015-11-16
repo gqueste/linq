@@ -10,7 +10,8 @@
     "Cookies": "",
     "moment": "",
     "es5-shim": "",
-    "es6-shim": ""
+    "es6-shim": "",
+    "reactfire" : ""
   },
   "resolutions": {
     "bootstrap": "~3.3.5"
