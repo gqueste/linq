@@ -23,7 +23,7 @@ render((
     <Router>
         <Route path="/index" component={Accueil}></Route>
         <Route path="/about" component={About}></Route>
-        <Route path="/room/:roomId" component={Room}/>
+        <Route path="/rooms/:roomId" component={Room}/>
         <Route path="*" component={Accueil}/>
     </Router>
     /*jshint ignore:end */

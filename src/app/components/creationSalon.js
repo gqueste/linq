@@ -41,11 +41,19 @@ var CreationSalon = React.createClass({
     },
     afficherLien: function(){
         if(this.state.afficherLien){
+            var adresse = window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated;
             return (
-                <div>
+                <div className="alert alert-success" role="alert">
+                    <p><strong>Votre salon a été créé !</strong></p>
+                    <p>Donnez le lien ci-dessous à vos amis, et commencez à jouer !</p>
                     <form>
                         <div className="row">
-                            <input type="text" className="form-control" readOnly value={this.state.idRoomCreated} />
+                            <div className="col-xs-12 col-md-6">
+                                <input type="text" className="form-control" readOnly value={adresse} />
+                            </div>
+                            <div className="col-xs-12 col-md-6">
+                                <button type="button" className="btn btn-block btn-primary">Entrer dans le chat</button>
+                            </div>
                         </div>
                     </form>
                 </div>
