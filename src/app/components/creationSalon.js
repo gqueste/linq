@@ -14,7 +14,7 @@ var CreationSalon = React.createClass({
             console.log(error);
         }
         else{
-            console.log("ok " + this.state.idRoomCreated);
+            console.log("created: " + this.state.idRoomCreated);
             this.setState({afficherLien: true});
         }
     },
@@ -39,12 +39,14 @@ var CreationSalon = React.createClass({
             callback(error, authData, ref);
         });
     },
+    getNewRoomAddress: function() {
+        return window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated;
+    },
     redirectToRoom: function(){
-        window.location.replace(window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated);
+        window.location.href = this.getNewRoomAddress();
     },
     afficherLien: function(){
         if(this.state.afficherLien){
-            var adresse = window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated;
             return (
                 <div className="alert alert-success" role="alert">
                     <p><strong>Votre salon a été créé !</strong></p>
@@ -52,10 +54,10 @@ var CreationSalon = React.createClass({
                     <form>
                         <div className="row">
                             <div className="col-xs-12 col-md-6">
-                                <input type="text" className="form-control" readOnly value={adresse} />
+                                <input type="text" className="form-control" readOnly value={this.getNewRoomAddress()} />
                             </div>
                             <div className="col-xs-12 col-md-6">
-                                <button type="button" className="btn btn-block btn-primary" onClick={this.redirectToRoom}>Entrer dans le chat</button>
+                                <button type="button" className="btn btn-block btn-primary" onClick={this.redirectToRoom}>Entrer dans le salon</button>
                             </div>
                         </div>
                     </form>
