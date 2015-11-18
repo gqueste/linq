@@ -20,7 +20,10 @@ var CreationSalon = React.createClass({
     },
     insertRoom: function(ref){
         var roomsRef = ref.child("rooms");
-        var refCreated = roomsRef.push({room:{id:'newRoom'}}, this.insertRoomCallback);
+        var refCreated = roomsRef.push({
+            id:'newRoom',
+            gameStarted: false
+        }, this.insertRoomCallback);
         this.setState({idRoomCreated: refCreated.key()});
     },
     connectionCallback: function(error, authData, ref){
