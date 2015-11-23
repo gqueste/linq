@@ -27,7 +27,7 @@ var Room = React.createClass({
         }
         else{
             return (
-                <Lobby currentRoom={this.state.currentRoom} firebaseRef={this.firebaseRefs['currentRoom']} />
+                <Lobby roomID={this.props.params.roomId} currentRoom={this.state.currentRoom} firebaseRef={this.firebaseRefs['currentRoom']} />
             )
         }
     },

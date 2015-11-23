@@ -1,4 +1,5 @@
 var React = require('react');
+var CurrentPlayer = require('../services/currentPlayer');
 
 var Lobby = React.createClass({
     getInitialState: function(){
@@ -19,20 +20,35 @@ var Lobby = React.createClass({
         if(this.props.currentRoom.players){
             players = this.props.currentRoom.players;
         }
+        var newIndex = players.length;
         players.push({
-            name: this.state.currentPlayerName
+            name: this.state.currentPlayerName,
+            ready: false
         });
+        var refParent = this;
         this.props.firebaseRef.update(
             {
                 players : players
+            }, function(){
+                CurrentPlayer.setPlayerID(newIndex);
+                refParent.forceUpdate();
             }
-        )
+        );
     },
-    getLobby: function(){
-        if(!this.props.currentRoom.players){
+    currentPlayerPanel: function(){
+        if(CurrentPlayer.getPlayerID() > -1){
             return (
                 <div>
-                    <strong>Pas encore de joueur</strong>
+                    Coucou {this.props.currentRoom.players[CurrentPlayer.getPlayerID()].name}
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <div className="row text-center">
+                        Retrouvez-vous dans la liste ou inscrivez vous
+                    </div>
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
                             <input type="text" className="form-control" value={this.state.currentPlayerName} onChange={this.changeCurrentPlayerName} />
@@ -45,11 +61,24 @@ var Lobby = React.createClass({
             )
         }
     },
+    playersPanel: function(){
+        if(!this.props.currentRoom.players){
+            return (
+                <div>
+                    <strong>Pas encore de joueur</strong>
+                </div>
+            )
+        }
+        else{
+
+        }
+    },
     render: function() {
         return (
             /*jshint ignore:start */
             <div>
-                {this.getLobby()}
+                {this.playersPanel()}
+                {this.currentPlayerPanel()}
             </div>
             /*jshint ignore:end */
         );

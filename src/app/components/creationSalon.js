@@ -1,6 +1,7 @@
 var React = require('react');
 var Env = require('../../config/env');
 var Firebase = require("firebase");
+var CurrentPlayer = require('../services/currentPlayer');
 
 var CreationSalon = React.createClass({
     getInitialState: function(){
@@ -46,6 +47,7 @@ var CreationSalon = React.createClass({
         return window.location.protocol + "//" + window.location.host + "/#/rooms/" + this.state.idRoomCreated;
     },
     redirectToRoom: function(){
+        CurrentPlayer.setPlayerID(-1);
         window.location.href = this.getNewRoomAddress();
     },
     afficherLien: function(){
