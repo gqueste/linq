@@ -9,15 +9,7 @@ var Room = React.createClass({
     componentWillMount: function(){
         var env = new Env();
         var ref = new Firebase(env.getFirebaseURL()+"/rooms/"+this.props.params.roomId);
-        var roomRef = this;
-        ref.authWithCustomToken(env.getFirebaseKey(), function(error, authData){
-            if (error) {
-                console.log("Authentication Failed!", error);
-            } else {
-                console.log("Authenticated successfully with payload:", authData);
-                roomRef.bindAsObject(ref, "currentRoom");
-            }
-        });
+        this.bindAsObject(ref, "currentRoom");
     },
     getInitialState: function() {
         return {
@@ -42,11 +34,11 @@ var Room = React.createClass({
     render: function() {
         return (
             /*jshint ignore:start */
-            <div className="jumbotron">
+            <div>
                 <div>
                     <h2>Hello Room {this.props.params.roomId}</h2>
-                    {this.getPanel()}
                 </div>
+                {this.getPanel()}
             </div>
             /*jshint ignore:end */
         );
