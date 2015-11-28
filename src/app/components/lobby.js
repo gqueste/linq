@@ -1,5 +1,6 @@
 var React = require('react');
 var CurrentPlayer = require('../services/currentPlayer');
+var LobbyPlayers = require('./lobby_players')
 
 var Lobby = React.createClass({
     getInitialState: function(){
@@ -70,7 +71,11 @@ var Lobby = React.createClass({
             )
         }
         else{
-
+            return (
+                <div>
+                    <LobbyPlayers players={this.props.currentRoom.players} firebaseRef={this.props.firebaseRef} />
+                </div>
+            )
         }
     },
     render: function() {

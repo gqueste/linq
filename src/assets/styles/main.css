@@ -9,3 +9,11 @@
     height: 60px;
     background-color: #f5f5f5;
 }
+
+.ready{
+    color: #1a9b10;
+}
+
+.notReady{
+    color: #bc0d1d;
+}
