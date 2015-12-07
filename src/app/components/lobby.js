@@ -1,6 +1,6 @@
 var React = require('react');
 var CurrentPlayer = require('../services/currentPlayer');
-var LobbyPlayers = require('./lobby_players')
+var LobbyPlayers = require('./lobby_players');
 
 var Lobby = React.createClass({
     getInitialState: function(){
@@ -47,9 +47,6 @@ var Lobby = React.createClass({
         else {
             return (
                 <div>
-                    <div className="row text-center">
-                        Retrouvez-vous dans la liste ou inscrivez vous
-                    </div>
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
                             <input type="text" className="form-control" value={this.state.currentPlayerName} onChange={this.changeCurrentPlayerName} />
@@ -83,6 +80,9 @@ var Lobby = React.createClass({
             /*jshint ignore:start */
             <div>
                 {this.playersPanel()}
+                <div className="row text-center">
+                    <strong>Le jeu se déclenche lorsque tous les joueurs ( > 4) indiquent qu'ils sont prêts.</strong>
+                </div>
                 {this.currentPlayerPanel()}
             </div>
             /*jshint ignore:end */

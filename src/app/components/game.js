@@ -5,7 +5,7 @@ var Game = React.createClass({
         return (
             /*jshint ignore:start */
             <div>
-
+                THIS IS THE GAME !!
             </div>
             /*jshint ignore:end */
         );

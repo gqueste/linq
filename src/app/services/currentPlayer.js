@@ -1,4 +1,4 @@
-var playerID = -1
+var playerID = -1;
 
 module.exports = {
     getPlayerID(){
