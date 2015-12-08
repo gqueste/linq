@@ -37,14 +37,7 @@ var Lobby = React.createClass({
         );
     },
     currentPlayerPanel: function(){
-        if(CurrentPlayer.getPlayerID() > -1){
-            return (
-                <div>
-                    Coucou {this.props.currentRoom.players[CurrentPlayer.getPlayerID()].name}
-                </div>
-            )
-        }
-        else {
+        if(CurrentPlayer.getPlayerID() == -1){
             return (
                 <div>
                     <div className="row">
@@ -70,7 +63,7 @@ var Lobby = React.createClass({
         else{
             return (
                 <div>
-                    <LobbyPlayers players={this.props.currentRoom.players} firebaseRef={this.props.firebaseRef} />
+                    <LobbyPlayers players={this.props.currentRoom.players} firebaseRef={this.props.firebaseRef} lobby={this} />
                 </div>
             )
         }

@@ -79,26 +79,40 @@ var LobbyPlayers = React.createClass({
             );
         }
     },
+    selectPlayer : function(index){
+        if(CurrentPlayer.getPlayerID() == -1){
+            CurrentPlayer.setPlayerID(index);
+            this.forceUpdate();
+            this.props.lobby.forceUpdate();
+        }
+    },
+    getPlayerLine : function(player, index){
+        var listItemClass = 'list-group-item row';
+        if(index == CurrentPlayer.getPlayerID()){
+            listItemClass += ' active';
+        }
+        return (
+            <a className={listItemClass} key={player.name} onClick={this.selectPlayer.bind(this, index)}>
+                <div className="col-xs-10 col-md-10">
+                    {player.name}
+                </div>
+                <div className="col-xs-2 col-md-2">
+                    {this.getReadyLabel(player)}
+                </div>
+            </a>
+        );
+    },
     getPlayers : function(){
         var players = [];
-        this.props.players.forEach(function(player) {
-            players.push(
-                <li className="list-group-item row" key={player.name}>
-                    <div className="col-xs-10 col-md-10">
-                        {player.name}
-                    </div>
-                    <div className="col-xs-2 col-md-2">
-                        {this.getReadyLabel(player)}
-                    </div>
-                </li>
-            );
+        this.props.players.forEach(function(player, index) {
+            players.push(this.getPlayerLine(player, index));
         }.bind(this));
         return (
             <div className="row">
                 <div className="col-xs-12 col-md-6">
-                    <ul className="list-group">
+                    <div className="list-group">
                         {players}
-                    </ul>
+                    </div>
                 </div>
                 <div className="col-xs-12 col-md-6">
                     {this.getReadyPanel()}

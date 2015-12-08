@@ -17,3 +17,10 @@
 .notReady{
     color: #bc0d1d;
 }
+
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus{
+    background-color: #c6c5c4;
+    border-color: #c6c5c4;
+}
