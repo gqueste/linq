@@ -11,7 +11,8 @@
     "moment": "",
     "es5-shim": "",
     "es6-shim": "",
-    "reactfire" : ""
+    "reactfire": "",
+    "firebase": "~2.3.2"
   },
   "resolutions": {
     "bootstrap": "~3.3.5"
