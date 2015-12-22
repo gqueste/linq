@@ -13,13 +13,6 @@ var Game = React.createClass({
             }
         };
     },
-    componentWillMount: function(){
-        var refRoot = this.props.firebaseRef.root();
-        console.log(refRoot.toString());
-        var ref = refRoot.child('words');
-        console.log(ref.toString());
-        this.bindAsObject(ref, "wordsAvailable");
-    },
     componentDidMount: function(){
         var env = new Env();
         $.get(env.getFirebaseURL()+"/words.json", function(result) {
@@ -77,9 +70,14 @@ var Game = React.createClass({
     }
     ,
     initiateGame: function(){
-        this.resetRoles();
-        this.giveRoles();
-        this.setWord();
+        if(!this.props.currentRoom.word){
+            this.resetRoles();
+            this.giveRoles();
+            this.setWord();
+        }
+        else {
+            this.setState({initialisation: false});
+        }
     },
     getRoleDisplay: function(){
         if(this.props.currentRoom.players[CurrentPlayer.getPlayerID()].role == 'spy'){
