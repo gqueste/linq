@@ -2,6 +2,7 @@ var React = require('react');
 var CurrentPlayer = require('../services/currentPlayer');
 var Firebase = require("firebase");
 var Env = require('../../config/env');
+var Turn = require('./turn');
 
 var Game = React.createClass({
     mixins: [ReactFireMixin],
@@ -98,6 +99,69 @@ var Game = React.createClass({
             )
         }
     },
+    getGamePanel: function(){
+        if(!this.props.currentRoom.firstDone){
+            return (
+                <div>
+                    <Turn currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this} />
+                </div>
+            )
+        }
+    },
+    getPlayerWord1: function(player) {
+        if(player.word1){
+            return (
+                <span>{player.word1}</span>
+            )
+        }
+        else {
+            return (
+                <span></span>
+            )
+        }
+    },
+    getPlayerWord2: function(player) {
+        if(player.word2){
+            return (
+                <span>{player.word2}</span>
+            )
+        }
+        else {
+            return (
+                <span></span>
+            )
+        }
+    },
+    getPlayerLine : function(player, index){
+        var listItemClass = 'list-group-item row';
+        if(index == CurrentPlayer.getPlayerID()){
+            listItemClass += ' active';
+        }
+        return (
+            <a className={listItemClass} key={player.name}>
+                <div className="col-xs-4 col-md-4">
+                    {player.name}
+                </div>
+                <div className="col-xs-4 col-md-4 text-center">
+                    {this.getPlayerWord1(player)}
+                </div>
+                <div className="col-xs-4 col-md-4 text-center">
+                    {this.getPlayerWord2(player)}
+                </div>
+            </a>
+        );
+    },
+    getPlayersPanel: function(){
+        var players = [];
+        this.props.currentRoom.players.forEach(function(player, index){
+            players.push(this.getPlayerLine(player, index));
+        }.bind(this));
+        return (
+            <div className='row list-group'>
+                {players}
+            </div>
+        )
+    },
     displayGame: function(){
         if(this.state.initialisation){
             return (
@@ -111,6 +175,8 @@ var Game = React.createClass({
                 <div className='text-center'>
                     <h2>{this.props.currentRoom.players[CurrentPlayer.getPlayerID()].name}</h2>
                     {this.getRoleDisplay()}
+                    {this.getGamePanel()}
+                    {this.getPlayersPanel()}
                 </div>
             )
         }
