@@ -2,7 +2,8 @@ var React = require('react');
 var CurrentPlayer = require('../services/currentPlayer');
 var Firebase = require("firebase");
 var Env = require('../../config/env');
-var Turn = require('./turn');
+var Turn1 = require('./turn1');
+var Turn2 = require('./turn2');
 
 var Game = React.createClass({
     mixins: [ReactFireMixin],
@@ -103,9 +104,18 @@ var Game = React.createClass({
         if(!this.props.currentRoom.firstDone){
             return (
                 <div>
-                    <Turn currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this} />
+                    <Turn1 currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this}/>
                 </div>
             )
+        }
+        else {
+            if(!this.props.currentRoom.secondDone){
+                return(
+                    <div>
+                        <Turn2 currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this}/>
+                    </div>
+                )
+            }
         }
     },
     getPlayerWord1: function(player) {
