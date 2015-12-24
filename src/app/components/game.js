@@ -4,6 +4,7 @@ var Firebase = require("firebase");
 var Env = require('../../config/env');
 var Turn1 = require('./turn1');
 var Turn2 = require('./turn2');
+var Vote = require('./vote');
 
 var Game = React.createClass({
     mixins: [ReactFireMixin],
@@ -115,6 +116,15 @@ var Game = React.createClass({
                         <Turn2 currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this}/>
                     </div>
                 )
+            }
+            else {
+                if(!this.props.currentRoom.voteDone){
+                    return (
+                        <div>
+                            <Vote currentRoom={this.props.currentRoom} firebaseRef={this.props.firebaseRef} game={this}/>
+                        </div>
+                    )
+                }
             }
         }
     },
